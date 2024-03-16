@@ -42,18 +42,27 @@ namespace fans
             Transitions = new Dictionary<char, State>()
         };
 
+        public State e = new State()
+        {
+            Name = "e",
+            IsAcceptState = false,
+            Transitions = new Dictionary<char, State>()
+        };
+
         State InitialState = a;
 
         public FA1()
         {
-            a.Transitions['0'] = b;
-            a.Transitions['1'] = a;
-            b.Transitions['0'] = d;
-            b.Transitions['1'] = c;
-            c.Transitions['0'] = d;
+            a.Transitions['0'] = d;
+            a.Transitions['1'] = b;
+            b.Transitions['0'] = c;
+            b.Transitions['1'] = b;
+            c.Transitions['0'] = e;
             c.Transitions['1'] = c;
-            d.Transitions['0'] = d;
-            d.Transitions['1'] = d;
+            d.Transitions['0'] = e;
+            d.Transitions['1'] = c;
+            e.Transitions['0'] = e;
+            e.Transitions['1'] = e;
         }
 
         public bool? Run(IEnumerable<char> s)
